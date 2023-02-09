@@ -8,6 +8,7 @@ namespace AddressBookSystem
 {
     internal class Contact
     {
+        public static List<AddressBookMain> contact = new List<AddressBookMain>();
         public static void CreateContact()
         {
             AddressBookMain addressBookMain = new AddressBookMain();
@@ -28,6 +29,24 @@ namespace AddressBookSystem
             addressBookMain.PhoneNumber = Console.ReadLine();
             Console.WriteLine("Enter Email");
             addressBookMain.Email = Console.ReadLine();
+
+            contact.Add(addressBookMain);
+            Console.ReadLine();
+        }
+
+        public static void Display()
+        {
+            foreach (var data in contact)
+            {
+                Console.WriteLine("First name:" + data.FirstName);
+                Console.WriteLine("Last name: " + data.LastName);
+                Console.WriteLine("Address: " + data.Address);
+                Console.WriteLine("City: " + data.City);
+                Console.WriteLine("State: " + data.State);
+                Console.WriteLine("Zip Code: " + data.Zip);
+                Console.WriteLine("Phone no.: " + data.PhoneNumber);
+                Console.WriteLine("Email Address: " + data.Email);
+            }
         }
     }
 }

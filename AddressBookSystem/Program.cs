@@ -9,6 +9,7 @@ namespace AddressBookSystem
             Console.WriteLine("___Welcome to Address book Program___");
 
             Contact.CreateContact();
+            Contact.Display();
             Console.ReadLine();
         }
     }
