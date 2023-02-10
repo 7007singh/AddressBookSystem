@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -114,6 +115,20 @@ namespace AddressBookSystem
                     }
                 }
             } 
+        }
+        public static void DeletePerson()
+        {
+            AddressBookMain addressBookMain = new AddressBookMain();
+            Console.WriteLine("Enter the first name of person to delete");
+            string firstName = Console.ReadLine().ToLower();
+            for (int i = 0; i < contact.Count; i++)
+            {
+                if (contact[i].FirstName == firstName)
+                {
+                    contact.RemoveAt(i);
+                    Console.WriteLine("Contact of {0} has been removed");
+                }
+            }
         }
     }
 }

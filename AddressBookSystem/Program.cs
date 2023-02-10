@@ -8,7 +8,7 @@ namespace AddressBookSystem
         {
             Console.WriteLine("___Welcome to Address book Program___");
 
-            Console.WriteLine("1:Add contact\n2:Update contact");
+            Console.WriteLine("Choose the option from below\n1:Add contact\n2:Update contact\n3:Delete Contact");
             string option = Console.ReadLine();
             switch (option)
             {
@@ -18,8 +18,12 @@ namespace AddressBookSystem
                     Console.ReadLine();
                     break;
                 case "2":
-                    Contact.CreateContact();
+                    //Contact.CreateContact();
                     Contact.UpdateContact();
+                    Console.ReadLine();
+                    break;
+                case "3":
+                    Contact.DeletePerson();
                     Console.ReadLine();
                     break;
             }
