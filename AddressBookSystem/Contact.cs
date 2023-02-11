@@ -32,6 +32,7 @@ namespace AddressBookSystem
             addressBookMain.Email = Console.ReadLine();
 
             contact.Add(addressBookMain);
+            
             Console.ReadLine();
         }
         public static void Display()
@@ -50,7 +51,6 @@ namespace AddressBookSystem
         }
         public static void UpdateContact()
         {
-            AddressBookMain addressBookMain = new AddressBookMain();
             Console.WriteLine("Enter first name to edit contact");
             string firstName = Console.ReadLine().ToLower();
             
@@ -66,42 +66,42 @@ namespace AddressBookSystem
                         {
                             case 1:
                                 Console.WriteLine("Enter the new first name");
-                                string newFirstName = addressBookMain.FirstName = Console.ReadLine();
+                                string newFirstName = data.FirstName = Console.ReadLine();
                                 Console.WriteLine("Updated first name is " + newFirstName);
                                 break;
                             case 2:
                                 Console.WriteLine("Enter the new last name");
-                                string newLastName = addressBookMain.FirstName = Console.ReadLine();
+                                string newLastName = data.FirstName = Console.ReadLine();
                                 Console.WriteLine("Updated last name " + newLastName);
                                 break;
                             case 3:
                                 Console.WriteLine("Enter the new address");
-                                string newAddress = addressBookMain.Address = Console.ReadLine();
+                                string newAddress = data.Address = Console.ReadLine();
                                 Console.WriteLine("Updated address is " + newAddress);
                                 break;
                             case 4:
                                 Console.WriteLine("Enter the new city name");
-                                string newCity = addressBookMain.City = Console.ReadLine();
+                                string newCity = data.City = Console.ReadLine();
                                 Console.WriteLine("Updated city" + newCity);
                                 break;
                             case 5:
                                 Console.WriteLine("Enter the new state name");
-                                string newState = addressBookMain.State = Console.ReadLine();
+                                string newState = data.State = Console.ReadLine();
                                 Console.WriteLine("Updated state " + newState);
                                 break;
                             case 6:
                                 Console.WriteLine("Enter the new zip code");
-                                string newZip = addressBookMain.Zip = Console.ReadLine();
+                                string newZip = data.Zip = Console.ReadLine();
                                 Console.WriteLine("Updated zip code " + newZip);
                                 break;
                             case 7:
                                 Console.WriteLine("Enter the new phone number");
-                                string newPhone = addressBookMain.PhoneNumber = Console.ReadLine();
+                                string newPhone = data.PhoneNumber = Console.ReadLine();
                                 Console.WriteLine("Updated phone number " + newPhone);
                                 break;
                             case 8:
                                 Console.WriteLine("Enter the new email id");
-                                string newEmail = addressBookMain.Email = Console.ReadLine();
+                                string newEmail = data.Email = Console.ReadLine();
                                 Console.WriteLine("Updated email " + newEmail);
                                 break;
                             case 9:
@@ -109,16 +109,15 @@ namespace AddressBookSystem
                                 break;
                         }
                     }
-                    else
-                    {
-                        Console.WriteLine("Contact does't exist");
-                    }
+                }
+                else
+                {
+                    Console.WriteLine("Contact not exist");
                 }
             } 
         }
         public static void DeletePerson()
         {
-            AddressBookMain addressBookMain = new AddressBookMain();
             Console.WriteLine("Enter the first name of person to delete");
             string firstName = Console.ReadLine().ToLower();
             for (int i = 0; i < contact.Count; i++)
@@ -126,7 +125,33 @@ namespace AddressBookSystem
                 if (contact[i].FirstName == firstName)
                 {
                     contact.RemoveAt(i);
-                    Console.WriteLine("Contact of {0} has been removed");
+                    Console.WriteLine("Contact has been removed");
+                }
+            }
+        }
+        public static void AddMultipleContact()
+        {
+            Console.WriteLine("Enter the number of contact you want to add");
+            int n = Convert.ToInt32(Console.ReadLine());
+            for(int i = 0; i < n; i++)
+            {   
+                Console.WriteLine("--------------------------");
+                AddressBookMain addressBookMain = new AddressBookMain();
+  
+                Console.WriteLine("Enter first name");
+                string firstName = addressBookMain.FirstName = Console.ReadLine();
+                Console.WriteLine("Enter last name");
+                string lastName = addressBookMain.LastName = Console.ReadLine();
+                if (contact[i].FirstName == addressBookMain.FirstName && contact[i].LastName == addressBookMain.LastName)
+                {
+                    Console.WriteLine($"Contact with name: {addressBookMain.FirstName} {addressBookMain.LastName} already exist...\nPlease enter different name");
+                }
+                else
+                {
+                    Console.WriteLine("This is valid entry. Proceed further with same...");
+                    Console.WriteLine("---------------------------");
+                    CreateContact();
+                    Console.WriteLine($"{contact.Count + 1} contacts");
                 }
             }
         }
