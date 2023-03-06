@@ -161,7 +161,23 @@ namespace AddressBookSystem
             {
                 Console.WriteLine("Enter a name for new Address book");
                 string name = Console.ReadLine();
-                keyValue.Add(name, contact);
+                if (keyValue.ContainsKey(name))
+                {
+                    int i = 1;
+                    Console.WriteLine("Name already exist");
+                    Console.WriteLine("Available names are: ");
+                    foreach (KeyValuePair<string, List<AddressBookMain>> pair in keyValue)
+                    {
+                        Console.WriteLine(i + "." + pair.Key + " ");
+                        i++;
+                    }
+                    Console.WriteLine("");
+                }
+                else
+                {
+                    AddressBookMain addressBookMain = new AddressBookMain();
+                    keyValue.Add(name, contact);
+                }
                 Console.WriteLine("Do you wish to add new address book ? (Y/N):");
                 choice = Console.ReadLine();
             }
