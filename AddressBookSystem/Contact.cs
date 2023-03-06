@@ -182,5 +182,18 @@ namespace AddressBookSystem
                 choice = Console.ReadLine();
             }
         }
+        public static void SearchPersonByStateOrCity()
+        {
+            Console.WriteLine("Enter the city/state to search person in address book");
+            string name = Console.ReadLine();
+            if(keyValue.ContainsKey(name) )
+            {
+                Console.WriteLine("{0} present in address book ",name);
+            }
+            else
+            {
+                Console.WriteLine("{0} name does not exist in address book ", name);
+            }
+        }
     }
 }
