@@ -243,6 +243,7 @@ namespace AddressBookSystem
                             }
                         }
                     }
+                    Console.WriteLine($"No of contact in {nameState}: {stateList.Count}");
                     break;
                 case 2:
                     Console.WriteLine("Enter the city you want to search");
@@ -262,6 +263,7 @@ namespace AddressBookSystem
                             }
                         }
                     }
+                    Console.WriteLine($"No of contact in {nameCity}: {cityList.Count}");
                     break;
             }
         }
