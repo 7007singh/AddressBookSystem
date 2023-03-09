@@ -1,12 +1,5 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace AddressBookSystem
 {
@@ -68,35 +61,35 @@ namespace AddressBookSystem
                         {
                             case 1:
                                 Console.WriteLine("Enter the updated first name");
-                                string newFirstName = data.FirstName = Console.ReadLine();
+                                data.FirstName = Console.ReadLine();
                                 break;
                             case 2:
                                 Console.WriteLine("Enter the updated last name");
-                                string newLastName = data.LastName = Console.ReadLine();
+                                data.LastName = Console.ReadLine();
                                 break;
                             case 3:
                                 Console.WriteLine("Enter the updated address");
-                                string newAddress = data.Address = Console.ReadLine();
+                                data.Address = Console.ReadLine();
                                 break;
                             case 4:
                                 Console.WriteLine("Enter the updated city name");
-                                string newCity = data.City = Console.ReadLine();
+                                data.City = Console.ReadLine();
                                 break;
                             case 5:
                                 Console.WriteLine("Enter the updated state name");
-                                string newState = data.State = Console.ReadLine();
+                                data.State = Console.ReadLine();
                                 break;
                             case 6:
                                 Console.WriteLine("Enter the updated zip code");
-                                string newZip = data.Zip = Console.ReadLine();
+                                data.Zip = Console.ReadLine();
                                 break;
                             case 7:
                                 Console.WriteLine("Enter the updated phone number");
-                                string newPhone = data.PhoneNumber = Console.ReadLine();
+                                data.PhoneNumber = Console.ReadLine();
                                 break;
                             case 8:
                                 Console.WriteLine("Enter the updated email id");
-                                string newEmail = data.Email = Console.ReadLine();
+                                data.Email = Console.ReadLine();
                                 break;
                             case 9:
                                 Console.WriteLine("Enter the option from above");
@@ -219,6 +212,57 @@ namespace AddressBookSystem
                     Console.WriteLine("Do you wish to choose Address Book ?(Y/N):");
                     choice = Console.ReadLine();
                 }
+            }
+        }
+        public static void SearchPersonAcrossCityOrState()
+        {
+            AddressBookMain addressBookMain = new AddressBookMain();
+            Console.WriteLine("Enter the option for search by city or state\n1.State\n2.City");
+            int option = Convert.ToInt32(Console.ReadLine());
+            switch (option)
+            {
+                case 1:
+                    int countState = 0;
+                    Console.WriteLine("Enter the state you want to search");
+                    string nameState = addressBookMain.State = Console.ReadLine();
+                    foreach (var key in addressbookDictionary.Keys)
+                    {
+                        foreach (var data in contactList)
+                        {
+                            if (addressBookMain.State.Equals(nameState))
+                            {
+                                Console.WriteLine($"Contacts in state: {nameState} \nperson details:=> {data.FirstName}, {data.LastName}, {data.Address}, {data.City}, {data.Zip}, {data.PhoneNumber}");
+                                countState++;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{nameState} not exist");
+                            }
+                        }
+                    }
+                    Console.WriteLine($"No of contact in {nameState} is {countState}");
+                    break;
+                case 2:
+                    int countCity = 0;
+                    Console.WriteLine("Enter the city you want to search");
+                    string nameCity = addressBookMain.City = Console.ReadLine();
+                    foreach (var key in addressbookDictionary.Keys)
+                    {
+                        foreach (var data in contactList)
+                        {
+                            if (addressBookMain.City.Equals(nameCity))
+                            {
+                                Console.WriteLine($"Contacts in state: {nameCity} \nperson details:=> {data.FirstName}, {data.LastName}, {data.Address}, {data.State}, {data.Zip}, {data.PhoneNumber}");
+                                countCity++;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{nameCity} not exist");
+                            }
+                        }
+                    }
+                    Console.WriteLine($"No of contact in {nameCity} is {countCity}");
+                    break;
             }
         }
     }
