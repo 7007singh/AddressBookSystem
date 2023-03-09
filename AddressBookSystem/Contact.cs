@@ -173,13 +173,52 @@ namespace AddressBookSystem
                 }
                 else
                 {
-                    int noOfaddbook = 1;
                     addressbookDictionary.Add(name, contactList);
                     Console.WriteLine("AddressBook added successfully");
-                    Console.WriteLine("no of addressbook: " + noOfaddbook++);
                 }
                 Console.WriteLine("Do you wish to add new address book ? (Y/N):");
                 choice = Console.ReadLine();
+            }
+        }
+        public static void AddContactInAddressBook()
+        {
+            if(addressbookDictionary.Count > 0)
+            {
+                AddressBookMain addressBookMain = new AddressBookMain();
+                Console.WriteLine("Do you wish to choose Address Book ?(Y/N):");
+                string choice = Console.ReadLine();
+                while (choice == "y" || choice == "Y")
+                {
+                    int i = 1;
+                    Console.WriteLine("Enter name of address book you want to use");
+                    string name = addressBookMain.AdressbookDictionary = Console.ReadLine();
+                    if (addressbookDictionary.ContainsKey(name))
+                    {
+                        contactList.Add(addressBookMain);
+                        Console.WriteLine("Enter first name");
+                        string firstName = Console.ReadLine();
+                        Console.WriteLine("Enter last name");
+                        string lastName = Console.ReadLine();
+                        if (contactList[i].FirstName == firstName && contactList[i].LastName == lastName)
+                        {
+                            Console.WriteLine($"Contact with name: {addressBookMain.FirstName} {addressBookMain.LastName} already exist...\nPlease enter different name");
+                        }
+                        Console.WriteLine("This is valis entry. Please proceed with same......");
+                        CreateContact();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{name} not found \nAvailable names are:");
+                        foreach (KeyValuePair<string, List<AddressBookMain>> pair in addressbookDictionary)
+                        {
+                            Console.WriteLine(i + "." + pair.Key + " ");
+                            i++;
+                        }
+                        Console.WriteLine("");
+                    }
+                    Console.WriteLine("Do you wish to choose Address Book ?(Y/N):");
+                    choice = Console.ReadLine();
+                }
             }
         }
     }
