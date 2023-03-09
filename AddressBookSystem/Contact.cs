@@ -6,7 +6,11 @@ namespace AddressBookSystem
     internal class Contact
     {
         public static Dictionary<string, List<AddressBookMain>> addressbookDictionary = new Dictionary<string, List<AddressBookMain>>();
+        public static Dictionary<string, List<AddressBookMain>> cityAddressBook = new Dictionary<string, List<AddressBookMain>>();
+        public static Dictionary<string, List<AddressBookMain>> stateAddressBook = new Dictionary<string, List<AddressBookMain>>();
         public static List<AddressBookMain> contactList = new List<AddressBookMain>();
+        public static List<AddressBookMain> cityList = new List<AddressBookMain>();
+        public static List<AddressBookMain> stateList = new List<AddressBookMain>();
         public static void CreateContact()
         {
             AddressBookMain addressBookMain = new AddressBookMain();
@@ -222,7 +226,6 @@ namespace AddressBookSystem
             switch (option)
             {
                 case 1:
-                    int countState = 0;
                     Console.WriteLine("Enter the state you want to search");
                     string nameState = addressBookMain.State = Console.ReadLine();
                     foreach (var key in addressbookDictionary.Keys)
@@ -232,7 +235,7 @@ namespace AddressBookSystem
                             if (addressBookMain.State.Equals(nameState))
                             {
                                 Console.WriteLine($"Contacts in state: {nameState} \nperson details:=> {data.FirstName}, {data.LastName}, {data.Address}, {data.City}, {data.Zip}, {data.PhoneNumber}");
-                                countState++;
+                                stateList.Add(data);
                             }
                             else
                             {
@@ -240,10 +243,8 @@ namespace AddressBookSystem
                             }
                         }
                     }
-                    Console.WriteLine($"No of contact in {nameState} is {countState}");
                     break;
                 case 2:
-                    int countCity = 0;
                     Console.WriteLine("Enter the city you want to search");
                     string nameCity = addressBookMain.City = Console.ReadLine();
                     foreach (var key in addressbookDictionary.Keys)
@@ -253,7 +254,7 @@ namespace AddressBookSystem
                             if (addressBookMain.City.Equals(nameCity))
                             {
                                 Console.WriteLine($"Contacts in state: {nameCity} \nperson details:=> {data.FirstName}, {data.LastName}, {data.Address}, {data.State}, {data.Zip}, {data.PhoneNumber}");
-                                countCity++;
+                                cityList.Add(data);
                             }
                             else
                             {
@@ -261,7 +262,6 @@ namespace AddressBookSystem
                             }
                         }
                     }
-                    Console.WriteLine($"No of contact in {nameCity} is {countCity}");
                     break;
             }
         }
