@@ -12,39 +12,35 @@ namespace AddressBookSystem
 {
     internal class Contact
     {
-        public static Dictionary<string, List<AddressBookMain>> keyValue = new Dictionary<string, List<AddressBookMain>>();
-        public static List<AddressBookMain> contact = new List<AddressBookMain>();
+        public static Dictionary<string, List<AddressBookMain>> addressbookDictionary = new Dictionary<string, List<AddressBookMain>>();
+        public static List<AddressBookMain> contactList = new List<AddressBookMain>();
         public static void CreateContact()
         {
-            Console.WriteLine("Do you wish to add new Contact ? (Y/N):");
-            string choice = Console.ReadLine();
-            while (choice == "y" || choice == "Y")
-            {
-                AddressBookMain addressBookMain = new AddressBookMain();
+            AddressBookMain addressBookMain = new AddressBookMain();
 
-                Console.WriteLine("Enter first name");
-                addressBookMain.FirstName = Console.ReadLine();
-                Console.WriteLine("Enter last name");
-                addressBookMain.LastName = Console.ReadLine();
-                Console.WriteLine("Enter Address");
-                addressBookMain.Address = Console.ReadLine();
-                Console.WriteLine("Enter City");
-                addressBookMain.City = Console.ReadLine();
-                Console.WriteLine("Enter State");
-                addressBookMain.State = Console.ReadLine();
-                Console.WriteLine("Enter Zip code");
-                addressBookMain.Zip = Console.ReadLine();
-                Console.WriteLine("Enter Phone number");
-                addressBookMain.PhoneNumber = Console.ReadLine();
-                Console.WriteLine("Enter Email");
-                addressBookMain.Email = Console.ReadLine();
-                contact.Add(addressBookMain);
-            }
+            Console.WriteLine("Enter first name");
+            addressBookMain.FirstName = Console.ReadLine();
+            Console.WriteLine("Enter last name");
+            addressBookMain.LastName = Console.ReadLine();
+            Console.WriteLine("Enter Address");
+            addressBookMain.Address = Console.ReadLine();
+            Console.WriteLine("Enter City");
+            addressBookMain.City = Console.ReadLine();
+            Console.WriteLine("Enter State");
+            addressBookMain.State = Console.ReadLine();
+            Console.WriteLine("Enter Zip code");
+            addressBookMain.Zip = Console.ReadLine();
+            Console.WriteLine("Enter Phone number");
+            addressBookMain.PhoneNumber = Console.ReadLine();
+            Console.WriteLine("Enter Email");
+            addressBookMain.Email = Console.ReadLine();
+            contactList.Add(addressBookMain);
         }
         public static void Display()
         {
-            foreach (var data in contact)
+            foreach (var data in contactList)
             {
+                Console.WriteLine("___Displaying contact list___");
                 Console.WriteLine("First name:" + data.FirstName);
                 Console.WriteLine("Last name: " + data.LastName);
                 Console.WriteLine("Address: " + data.Address);
@@ -60,9 +56,9 @@ namespace AddressBookSystem
             Console.WriteLine("Enter first name to edit contact");
             string firstName = Console.ReadLine().ToLower();
             
-            foreach(var data in contact)
+            foreach(var data in contactList)
             {
-                if (contact.Contains(data))
+                if (contactList.Contains(data))
                 {
                     if(data.FirstName.Equals(firstName))
                     {
@@ -118,12 +114,12 @@ namespace AddressBookSystem
         {
             Console.WriteLine("Enter the first name of person to delete");
             string firstName = Console.ReadLine().ToLower();
-            for (int i = 0; i < contact.Count; i++)
+            for (int i = 0; i < contactList.Count; i++)
             {
-                if (contact[i].FirstName == firstName)
+                if (contactList[i].FirstName == firstName)
                 {
-                    Console.WriteLine($"Contact of {contact[i].FirstName} has been removed");
-                    contact.RemoveAt(i);
+                    Console.WriteLine($"Contact of {contactList[i].FirstName} has been removed");
+                    contactList.RemoveAt(i);
                 }
             }
         }
@@ -140,7 +136,7 @@ namespace AddressBookSystem
                 string firstName = addressBookMain.FirstName = Console.ReadLine();
                 Console.WriteLine("Enter last name");
                 string lastName = addressBookMain.LastName = Console.ReadLine();
-                if (contact[i].FirstName == addressBookMain.FirstName && contact[i].LastName == addressBookMain.LastName)
+                if (contactList[i].FirstName == addressBookMain.FirstName && contactList[i].LastName == addressBookMain.LastName)
                 {
                     Console.WriteLine($"Contact with name: {addressBookMain.FirstName} {addressBookMain.LastName} already exist...\nPlease enter different name");
                 }
@@ -149,24 +145,26 @@ namespace AddressBookSystem
                     Console.WriteLine("This is valid entry. Proceed further with same...");
                     Console.WriteLine("---------------------------");
                     CreateContact();
-                    Console.WriteLine($"{contact.Count + 1} contacts");
+                    Console.WriteLine($"{contactList.Count } contacts");
                 }
             }
         }
         public static void AddAddressBook()
         {
+            AddressBookMain addressBookMain = new AddressBookMain();
             Console.WriteLine("Do you wish to add new Addressbook ? (Y/N):");
             string choice = Console.ReadLine();
             while (choice == "y" || choice == "Y")
             {
                 Console.WriteLine("Enter a name for new Address book");
-                string name = Console.ReadLine();
-                if (keyValue.ContainsKey(name))
+                string name = addressBookMain.AdressbookDictionary = Console.ReadLine();
+
+                if (addressbookDictionary.ContainsKey(name))
                 {
                     int i = 1;
                     Console.WriteLine("Name already exist");
                     Console.WriteLine("Available names are: ");
-                    foreach (KeyValuePair<string, List<AddressBookMain>> pair in keyValue)
+                    foreach (KeyValuePair<string, List<AddressBookMain>> pair in addressbookDictionary)
                     {
                         Console.WriteLine(i + "." + pair.Key + " ");
                         i++;
@@ -175,24 +173,13 @@ namespace AddressBookSystem
                 }
                 else
                 {
-                    AddressBookMain addressBookMain = new AddressBookMain();
-                    keyValue.Add(name, contact);
+                    int noOfaddbook = 1;
+                    addressbookDictionary.Add(name, contactList);
+                    Console.WriteLine("AddressBook added successfully");
+                    Console.WriteLine("no of addressbook: " + noOfaddbook++);
                 }
                 Console.WriteLine("Do you wish to add new address book ? (Y/N):");
                 choice = Console.ReadLine();
-            }
-        }
-        public static void SearchPersonByStateOrCity()
-        {
-            Console.WriteLine("Enter the city/state to search person in address book");
-            string name = Console.ReadLine();
-            if(keyValue.ContainsKey(name) )
-            {
-                Console.WriteLine("{0} present in address book ",name);
-            }
-            else
-            {
-                Console.WriteLine("{0} name does not exist in address book ", name);
             }
         }
     }
