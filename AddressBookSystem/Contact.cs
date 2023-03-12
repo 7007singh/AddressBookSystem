@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AddressBookSystem
 {
@@ -149,7 +150,7 @@ namespace AddressBookSystem
         public static void AddAddressBook()
         {
             AddressBookMain addressBookMain = new AddressBookMain();
-            Console.WriteLine("Do you wish to add new Addressbook ? (Y/N):");
+            Console.Write("Do you wish to add new Addressbook ? (Y/N):");
             string choice = Console.ReadLine();
             while (choice == "y" || choice == "Y")
             {
@@ -173,7 +174,7 @@ namespace AddressBookSystem
                     addressbookDictionary.Add(name, contactList);
                     Console.WriteLine("AddressBook added successfully");
                 }
-                Console.WriteLine("Do you wish to add new address book ? (Y/N):");
+                Console.Write("Do you wish to add new address book ? (Y/N):");
                 choice = Console.ReadLine();
             }
         }
@@ -182,7 +183,7 @@ namespace AddressBookSystem
             if(addressbookDictionary.Count > 0)
             {
                 AddressBookMain addressBookMain = new AddressBookMain();
-                Console.WriteLine("Do you wish to choose Address Book ?(Y/N):");
+                Console.Write("Do you wish to choose Address Book ?(Y/N):");
                 string choice = Console.ReadLine();
                 while (choice == "y" || choice == "Y")
                 {
@@ -213,7 +214,7 @@ namespace AddressBookSystem
                         }
                         Console.WriteLine("");
                     }
-                    Console.WriteLine("Do you wish to choose Address Book ?(Y/N):");
+                    Console.Write("Do you wish to choose Address Book ?(Y/N):");
                     choice = Console.ReadLine();
                 }
             }
@@ -265,6 +266,18 @@ namespace AddressBookSystem
                     }
                     Console.WriteLine($"No of contact in {nameCity}: {cityList.Count}");
                     break;
+            }
+        }
+        public static void SortEntriesByName()
+        {
+            Console.WriteLine("Ordered List_________");
+            foreach (var contact in addressbookDictionary)
+            {
+                Console.WriteLine("{0}", contact.Key);
+                foreach (var data in contact.Value.OrderBy(x => x.FirstName).ThenBy(x => x.LastName))
+                {
+                    Console.WriteLine($"Name: {data.FirstName} {data.LastName}\n");
+                }
             }
         }
     }

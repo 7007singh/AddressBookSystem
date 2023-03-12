@@ -9,7 +9,8 @@ namespace AddressBookSystem
             Console.WriteLine("___Welcome to Address book Program___");
             while (true)
             {
-                Console.WriteLine("1.Create contact\n2.Add Multiple Contact\n3.Update Contact\n4.Delete contact\n5.Add multiple address book\n6.Add Contact in addressbook\n7.Search person accross city or state");
+                Console.WriteLine("1.Create contact\n2.Add Multiple Contact\n3.Update Contact\n4.Delete contact\n5.Add multiple address book" +
+                    "\n6.Add Contact in addressbook\n7.Search person accross city or state\n8.Sort entries by name");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -34,8 +35,11 @@ namespace AddressBookSystem
                     case 7:
                         Contact.SearchPersonAcrossCityOrState();
                         break;
+                    case 8:
+                        Contact.SortEntriesByName();
+                        break;
                 }
-                Contact.Display();
+                //Contact.Display();
                 Console.WriteLine("________________________");
                 Console.ReadLine();
             }
